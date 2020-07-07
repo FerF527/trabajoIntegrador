@@ -11,13 +11,13 @@ sucursalesController = {
             })
             res.end();
         },
-        infoSucursal : (req, res)=>{
+        infoSucursal : function(req, res){
             res.set({'conten-type':'text/plain;charset=utf-8'});
             let sucursalSeleccionada = req.params.sucursal;
             dataConcesionarias.forEach((sucursales)=>{
             if (sucursales.sucursal.toUpperCase() == sucursalSeleccionada.toUpperCase().trim()){
              //   if (sucursales.sucursal == sucursalSeleccionada){
-                
+                        res.set({'conten-type':'text/plain;charset=utf-8'});
                         res.write('Estos son los datos de la sucursal: ' + sucursales.sucursal + '\n\n');
                         res.write('Dirección: ' + sucursales.direccion + '\n');
                         res.write(`Telefono: ${sucursales.telefono}  \n`);
