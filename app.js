@@ -14,3 +14,7 @@ app.use('/sucursales', rutasSucursales);
 const rutasMarcas = require('./routes/marcas');
 
 app.use('/marcas', rutasMarcas);
+
+const rutasAutos = require('./routes/autos');
+
+app.use('/autos', rutasAutos);

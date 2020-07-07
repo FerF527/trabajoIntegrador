@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { resolveSoa } = require('dns');
 const datosConcesionarias = JSON.parse(fs.readFileSync('./data/concesionarias.json', 'utf-8'));
 
 const marcas={
