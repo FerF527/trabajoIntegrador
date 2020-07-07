@@ -23,6 +23,7 @@ const marcas={
         res.set({'content-type':'text/plain;charset=utf-8'});
         let marcaSeleccionada = req.params.marca;
          let marcasAutos = [];
+         let marcaCorrecta = false;
         datosConcesionarias.forEach(concesionaria=>{
            concesionaria.autos.forEach(auto=>{
                if(marcasAutos.indexOf(auto.marca) == -1){
@@ -33,18 +34,23 @@ const marcas={
             marcasAutos.forEach(function(marca){
                 if(marca.toUpperCase().indexOf(marcaSeleccionada.toUpperCase().trim()) !== -1){
                     res.write('Bienvenido a continuación le detallamos los coches disponibles en base a su selección. \n\n');
+                    marcaCorrecta = true;
                 }
             }); 
             
         datosConcesionarias.forEach(function(sucursal){
             sucursal.autos.forEach(function(auto){
                 if(auto.marca.toUpperCase() == marcaSeleccionada.toUpperCase().trim()){
-                    res.write(`Marca: ${auto.marca} Modelo: ${auto.modelo} Año: ${auto.anio} Color: ${auto.color}
+                    res.write(` ■ Marca: ${auto.marca} ■ Modelo: ${auto.modelo} ■ Año: ${auto.anio} ■ Color: ${auto.color}
 `);                 
                 }
             })
         })
-        res.end('seleccione una marca valida');
+        if(marcaCorrecta == false){
+        res.end('Por favor seleccione una marca disponible en nuestras sucursales');
+        }else{
+            res.end();
+        }
     }
 }
 module.exports = marcas;
